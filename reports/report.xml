@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <report
+        id="report_appointment_card"
+        string="Appointment Card"
+        model="hospital.appointment"
+        report_type="qweb-pdf"
+        name="hospital.report_appointment"
+        file="hospital.report_appointment"/>
+
+</odoo>

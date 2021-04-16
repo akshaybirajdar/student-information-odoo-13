@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="student_information_tree_view" model="ir.ui.view">
+        <field name="name">student.information.tree.view</field>
+        <field name="model">student.information</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="student" optional="show"/>
+                <field name="mobile" optional="show"/>
+                <field name="email" optional="show"/>
+                <field name="country_id" optional="show"/>
+                <field name="state_id" optional="show"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_student_information_form" model="ir.ui.view">
+        <field name="name">student.information.form</field>
+        <field name="model">student.information</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="New Registration">
+                <header>
+                    <button name="action_approve" type="object" states="draft" string="Approve" class="oe_highlight"/>
+                    <button name="action_cancel" type="object" string="Cancel" class="oe_highlight"/>
+                    <button name="action_reset" type="object" string="Reset" class="oe_highlight"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,confirm,done"/>
+                </header>
+
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="student"/>
+                            <field name="mobile"/>
+                            <field name="email"/>
+                        </group>
+                        <group>
+                            <field name="country_id"/>
+                            <field name="state_id"/>
+                        </group>
+                    </group>
+<!--                    <group string="10th Details">-->
+<!--                        <field name="education_line">-->
+<!--                            <tree editable="bottom">-->
+<!--                                <field name="degree_name"/>-->
+<!--                                <field name="institute"/>-->
+<!--                                <field name="pass_out_year"/>-->
+<!--                                <field name="year_difference"/>-->
+<!--                            </tree>-->
+<!--                        </field>-->
+<!--                    </group>-->
+                    <notebook>
+                        <page string="10th Details" name="education_lines">
+                            <field
+                                name="education_line"
+                                mode="tree,kanban"
+                                attrs="{'readonly': [('state', 'in', ('done', 'cancel'))]}">
+                                <form>
+                                    <group>
+                                        <field name="degree_name"/>
+                                        <field name="institute"/>
+                                        <field name="pass_out_year"/>
+                                        <field name="year_difference"/>
+                                    </group>
+                                </form>
+                            </field>
+                        </page>
+                        <page string="12th Details" name="education_lines">
+                            <field
+                                name="education_line"
+                                mode="tree,kanban">
+                                <form>
+                                    <group>
+                                        <field name="degree_name"/>
+                                        <field name="institute"/>
+                                        <field name="pass_out_year"/>
+                                        <field name="year_difference"/>
+                                    </group>
+                                </form>
+                            </field>
+                        </page>
+                    </notebook>
+<!--                    <group string="12th Details">-->
+<!--                        <field name="hsc_degree">-->
+<!--                            <tree editable="bottom">-->
+<!--                                <field name="degree_name"/>-->
+<!--                                <field name="institute"/>-->
+<!--                                <field name="pass_out_year"/>-->
+<!--                                <field name="year_difference"/>-->
+<!--                            </tree>-->
+<!--                        </field>-->
+<!--                    </group>-->
+<!--                    <group string="BE Details">-->
+<!--                        <field name="graduate_degree">-->
+<!--                            <tree editable="bottom">-->
+<!--                                <field name="degree_name"/>-->
+<!--                                <field name="institute"/>-->
+<!--                                <field name="pass_out_year"/>-->
+<!--                                <field name="year_difference"/>-->
+<!--                            </tree>-->
+<!--                        </field>-->
+<!--                    </group>-->
+
+<!--                    <group string="ME Details">-->
+<!--                        <field name="master_degree">-->
+<!--                            <tree editable="bottom">-->
+<!--                                <field name="degree_name"/>-->
+<!--                                <field name="institute"/>-->
+<!--                                <field name="pass_out_year"/>-->
+<!--                                <field name="year_difference"/>-->
+<!--                            </tree>-->
+<!--                        </field>-->
+<!--                    </group>-->
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

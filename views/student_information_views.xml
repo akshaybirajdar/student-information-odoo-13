@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="action_student_information" model="ir.actions.act_window">
+        <field name="name">Student Information</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">student.information</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Register!</p>
+        </field>
+    </record>
+
+    <record id="action_student_education" model="ir.actions.act_window">
+        <field name="name">Education</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">student.education</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create new Entries!</p>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_student_education_form">
+        <field name="name">Education Form</field>
+        <field name="model">student.education</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Education Details">
+                <sheet>
+                    <group>
+                        <field name="degree_name" string="Degree Name"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_student_education_tree" model="ir.ui.view">
+        <field name="name">student.education.tree.view</field>
+        <field name="model">student.education</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="degree_name"/>
+                <field name="institute"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="student_tree_view" model="ir.ui.view">
+        <field name="name">student.tree.view</field>
+        <field name="inherit_id" ref="base.view_partner_tree"/>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="phone" optional="hide"/>
+                <field name="mobile" optional="show"/>
+                <field name="state_id"/>
+                <field name="country_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <menuitem id="student_information_root" name="Student Information" sequence="10"/>
+    <menuitem id="student_information_list_menu" name="Registration Form" parent="student_information_root" action="action_student_information"/>
+    <menuitem id="student_education_list" name="Education" parent="student_information_root" action="action_student_education"/>
+    <menuitem id="student_list" name="Students" parent="student_information_root" action="account.res_partner_action_customer"/>
+</odoo>
